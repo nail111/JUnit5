@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
 
@@ -35,5 +37,17 @@ public class Step5Test {
     void test3() {
         assumeTrue("abc".contains("X"));
         fail("test3 fails...");
+    }
+
+    @ParameterizedTest(name = "{0} is not supported")
+    @ValueSource(ints = {10,11,12})
+    void test4(int a) {
+        System.out.println(a);
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @ValueSource(strings = {"Hello ","World"})
+    void test4_2(String a) {
+        System.out.print(a);
     }
 }
